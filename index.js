@@ -4,8 +4,24 @@
  * @returns {boolean} Returns `true` if all values in the array are numbers. Otherwise, return `false`.
  */
 function isValid(rolls) {
-  return rolls === undefined ? "false" : rolls.every(ele => typeof ele === "number")
+  let output;
+  if (rolls.length === 0){
+    output = true
+  } else {
+  for (let number of rolls){
+    if(number === undefined){
+      output = false;
+    } else if (typeof number !== "number"){
+      output = false;
+    } else {
+      output = true
+    }
+  }
 }
+  // return rolls === undefined ? "false" : rolls.every(ele => typeof ele === "number")
+  return output
+}
+
 
 /**
  * Finds a value in an array. If that value is in the array, returns it. Otherwise, returns `null`.
