@@ -67,7 +67,7 @@ function getRollCounts(rolls) {
     }
   }
 
-  return;
+  return rollCount;
 }
 
 // Do not change the code below here.
