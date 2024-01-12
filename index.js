@@ -41,24 +41,13 @@ const filterOutLowValues = (rolls, lowest) => rolls.filter(roll => roll >= lowes
  * @returns {object} An object where the keys are numbers rolled and the values are the number of times that roll appears in the `rolls` array.
  */
 function getRollCounts(rolls) {
-  const rollCount = {};
+  const obj = {};
 
-  for (let roll of rolls) {
-    // first time seeing number
-    if (!rollCount[roll]) {
-      console.log("before:", rollCount);
-      rollCount[roll] = 1;
-      console.log("after:", rollCount);
-
-      // number has been seen already
-    } else {
-      console.log("before:", rollCount);
-      rollCount[roll] += 1;
-      console.log("after:", rollCount);
-    }
+  for (let i = 0; i < rolls.length; i++) {
+    obj[rolls[i]] = obj[rolls[i]] + 1 || 1;
   }
 
-  return;
+  return obj;
 }
 
 // Do not change the code below here.
