@@ -51,23 +51,15 @@ function filterOutLowValues(rolls, lowest) {
  */
 function getRollCounts(rolls) {
   const rollCount = {};
-
-  for (let roll of rolls) {
-    // first time seeing number
-    if (!rollCount[roll]) {
-      console.log("before:", rollCount);
-      rollCount[roll] = 1;
-      console.log("after:", rollCount);
-
-      // number has been seen already
+  
+  for(let i = 0; i < rolls.length; i++) {
+    if(rollCount[rolls[i]] === undefined) {
+      rollCount[rolls[i]] = 1;
     } else {
-      console.log("before:", rollCount);
-      rollCount[roll] += 1;
-      console.log("after:", rollCount);
+      rollCount[rolls[i]] += 1;
     }
   }
-
-  return;
+  return rollCount;
 }
 
 // Do not change the code below here.
