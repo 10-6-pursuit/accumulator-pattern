@@ -18,7 +18,15 @@ function isValid(rolls) {
  * @param {number} value - A specific value to find.
  * @returns {*} - The found value or `null`.
  */
-function findValue(rolls, value) {}
+function findValue(rolls, value) {
+  
+  for (let i = 0; i < rolls.length; i++) {
+    if (value === rolls[i]) {
+      return value;
+    }
+  }
+  return null; 
+}
 
 /**
  * Returns a new array from the `rolls` array with only values equal to or greater than the `lowest` value.
@@ -26,7 +34,15 @@ function findValue(rolls, value) {}
  * @param {number} lowest - A number that represents the lowest allowed value in the new array.
  * @returns {number[]} An array of all numbers that are equal to or higher than the `lowest` value.
  */
-function filterOutLowValues(rolls, lowest) {}
+function filterOutLowValues(rolls, lowest) {
+  const newArr = []
+  for (let i = 0; i < rolls.length; i++) {
+    if (rolls[i] >= lowest) {
+      newArr.push(rolls[i]);
+    }
+  }
+  return newArr;
+}
 
 /**
  * Returns an object which has rolls as keys and counts as values.
