@@ -4,13 +4,14 @@
  * @returns {boolean} Returns `true` if all values in the array are numbers. Otherwise, return `false`.
  */
 function isValid(rolls) {
-  let result = [];
-  for (let i = 0; i < rolls.length; i++) {
-    if (typeof rolls[i] === 'number') {
-      result.push(rolls[i]);
+  for (let roll of rolls) {
+    if (typeof roll === "number") {
+      return true;
+    } else {
+      return false;
     }
   }
-  return result;
+  return true;
 }
 
 
@@ -22,13 +23,13 @@ function isValid(rolls) {
  * @returns {*} - The found value or `null`.
  */
 function findValue(rolls, value) {
- for (let i = 0; i < rolls.length; i++) {
-    result = rolls[i];
-    if (result === value) {
-     return true;
+ let result = null;
+  for (let roll of rolls) {
+    if (roll === value) {
+     result = value;
     }
   }
-  return false;
+  return result;
  }
 
 /**
@@ -54,7 +55,13 @@ return result;
  * @param {number[]} rolls - An array of numbers representing rolls on a die.
  * @returns {object} An object where the keys are numbers rolled and the values are the number of times that roll appears in the `rolls` array.
  */
-function getRollCounts(rolls) {}
+function getRollCounts(rolls) {
+  const rollCount = {}
+  for (let roll of rolls) {
+    !rollCount[roll] ? rollCount[roll] = 1 : rollCount[roll]++;
+  }
+  return rollCount;
+}
 
 // Do not change the code below here.
 module.exports = {
