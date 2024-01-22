@@ -5,20 +5,20 @@
  */
 function isValid(rolls) {
 
-  
-  let newArray = rolls.reduce(function (accumulator, curValue) {
 
-    if ( !isNaN(curValue)) {
-  
-      accumulator.push(curValue)
-  
+  let accumulatorCount = rolls.reduce(function (accumulator, curValue) {
+
+    if (!isNaN(curValue)) {
+
+      accumulator++;
+
     }
-  
-    return accumulator
-  
-  }, []);
- 
-  return newArray.length==rolls.length?true : false;
+    return accumulator;
+  }, 0);
+
+  if (accumulatorCount == rolls.length)
+    return true;
+  else return false;
 }
 
 /**
@@ -29,18 +29,18 @@ function isValid(rolls) {
  */
 function findValue(rolls, value) {
 
-  
-let index = null;
-rolls.reduce((accumulator, item) => {
-  if (!accumulator.includes(value)) {
-    accumulator.push(value);
-    index = value;
-  }
 
-  return accumulator;
-}, []);
+  //let accumulator = 0;
+  let final = rolls.reduce((accumulator, currentValue) => {
+    if (value == currentValue) {
+      accumulator = currentValue;
+    }
+    return accumulator;
+  }, null);
 
-return index;
+  if (final == null)
+    return null;
+  else return final;
 }
 
 /**
@@ -51,13 +51,12 @@ return index;
  */
 function filterOutLowValues(rolls, lowest) {
 
-  return rolls.reduce(
-    (accumulator, currentValue) => {
-        return [
-            Math.min(currentValue, lowest)
-        ];
-    }, []);
-
+  let newArray = [];
+  rolls.reduce((accumulator, currentValue) => {
+    if (currentValue >= lowest)
+      newArray.push(currentValue)
+  }, 0);
+  return newArray;
 }
 
 /**
@@ -67,24 +66,30 @@ function filterOutLowValues(rolls, lowest) {
  */
 function getRollCounts(rolls) {
   const rollCount = {};
+  let roll, i;
 
-  for (let roll of rolls) {
-    // first time seeing number
-    if (!rollCount[roll]) {
-      console.log("before:", rollCount);
-      rollCount[roll] = 1;
-      console.log("after:", rollCount);
-
-      // number has been seen already
-    } else {
-      console.log("before:", rollCount);
-      rollCount[roll] += 1;
-      console.log("after:", rollCount);
+  const removeDuplicatedArr = rolls.reduce((accumulator, currentValue) => {
+    if (!accumulator.includes(currentValue)) {
+      accumulator.push(currentValue);
     }
-  }
+    return accumulator;
+  }, []);
 
-  return {rollCount};
+
+  for (i = 0; i < removeDuplicatedArr.length; i++) {
+    roll = removeDuplicatedArr[i];
+    let finalCount = rolls.reduce((accumulator, currentValue) => {
+      if (currentValue == roll)
+        accumulator++;
+
+      return accumulator
+    }, 0);
+    rollCount[roll] = finalCount;
+  }
+  return rollCount;
 }
+
+console.log(getRollCounts([1, 2, 3, 1]));
 
 // Do not change the code below here.
 module.exports = {
