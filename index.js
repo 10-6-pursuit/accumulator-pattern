@@ -7,7 +7,7 @@ function isValid(rolls) {
   // If the rolls array is empty, return false.
     let acc = 0
     for (let i = 0; i < rolls.length; i++){
-      if (typeof rolls[i] === 'number') {
+      if (rolls[i] === 'number') {
   
         acc++
       }
