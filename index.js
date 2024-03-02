@@ -5,18 +5,16 @@
  */
 function isValid(rolls) {
   // If the rolls array is empty, return false.
-  if (rolls.length === 0) {
-    return false;
-  }
+    let acc = 0
+    for (let i = 0; i < rolls.length; i++){
+      if (typeof rolls[i] === 'number') {
   
-  for (let i = 0; i < rolls.length; i++) {
-    if (typeof rolls[i] !== 'number') {
-      return false;
+        acc++
+      }
     }
+    return acc === rolls.length;
   }
-  // If all elements are numbers, return true.
-  return true;
-}
+  ;
 
 /**
  * Finds a value in an array. If that value is in the array, returns it. Otherwise, returns `null`.
@@ -26,17 +24,18 @@ function isValid(rolls) {
  */
 function findValue(rolls, value) {
   // If the rolls array is empty, return null.
-  if (rolls.length === 0) {
-    return null;
-  }
-  
-  for (let i = 0; i < rolls.length; i++) {
+  let val = null;
+
+  for (let i = 0; i < rolls.length; i++){
     if (rolls[i] === value) {
-      return value;
+      val = rolls[i]
+      break;
     }
   }
-  return null;
+  return value;
 }
+
+
 
 /**
  * Returns a new array from the `rolls` array with only values equal to or greater than the `lowest` value.
@@ -44,7 +43,17 @@ function findValue(rolls, value) {
  * @param {number} lowest - A number that represents the lowest allowed value in the new array.
  * @returns {number[]} An array of all numbers that are equal to or higher than the `lowest` value.
  */
-function filterOutLowValues(rolls, lowest) {}
+function filterOutLowValues(rolls, lowest) {
+  const arr = [];
+
+  for (let i = 0; i < rolls.length; i++){
+    if (rolls[i] >= lowest) {
+      arr.push(rolls[i])
+    }
+  }
+  return arr
+}
+
 
 /**
  * Returns an object which has rolls as keys and counts as values.
@@ -79,3 +88,5 @@ module.exports = {
   filterOutLowValues,
   getRollCounts,
 };
+
+"solved"
